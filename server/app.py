@@ -29,6 +29,18 @@ class Restaurants(Resource):
             return make_response(restaurants_dict, 200)
         else: 
             return make_response("no restaurants found in db", 404)
+        
+    # def post(self): 
+    #     new_restaurant = Restaurant(
+    #         name = request.get_json()["name"], 
+    #         address = request.get_json()["address"], 
+    #     )
+    #     new_restaurant_dict = new_restaurant.to_dict() 
+    #     db.session.add(new_restaurant)
+    #     db.session.commit()
+        
+    #     response = make_response(new_restaurant_dict, 201)
+    #     return response
             
 class RestaurantsById(Resource): 
     def get(self,id): 
@@ -37,6 +49,16 @@ class RestaurantsById(Resource):
             return make_response(restaurant.to_dict(), 200)
         else: 
             return make_response("This restaurant id doesn't exist", 404)
+    
+    def delete(self,id):
+        restaurant_to_delete = Restaurant.query.filter_by(id=id).first()
+        if(restaurant_to_delete):
+            db.session.delete(restaurant_to_delete)
+            db.session.commit()
+            return make_response("restaurant deleted", 204)
+        else: 
+            return make_response("restaurant id doesn't exist",404)
+            
     
 class Pizzas(Resource): 
     def get(self): 
@@ -54,8 +76,24 @@ class PizzasById(Resource):
             return make_response(pizza.to_dict(), 200)
         else: 
             return make_response("This pizza id doesn't exist", 404)
+        
+class RestaurantPizzas(Resource):
+    def post(self): 
+        try: 
+            new_restaurant_pizza = RestaurantPizza(
+                pizza_id = request.get_json()["pizza_id"], 
+                restaurant_id = request.get_json()["restaurant_id"], 
+                price = request.get_json()["price"]
+            )
+            new_restaurant_pizza_dict = new_restaurant_pizza.to_dict() 
+            db.session.add(new_restaurant_pizza)
+            db.session.commit()
+            return make_response(new_restaurant_pizza_dict, 200)
+        except ValueError as e: 
+            return make_response(e, 404)
     
 # TODO: connect resources 
+api.add_resource(RestaurantPizzas, '/restaurant_pizzas')
 api.add_resource(Pizzas, "/pizzas")
 api.add_resource(PizzasById, "/pizzas/<int:id>")
 api.add_resource(Restaurants, '/restaurants')

@@ -27,10 +27,14 @@ class RestaurantPizza(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True) 
     pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'))
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
-    price = db.Column(db.Integer)
+    price = db.Column(db.Integer) 
     created_at = db.Column(db.DateTime, server_default = db.func.now())
     update_at = db.Column(db.DateTime, onupdate = db.func.now())
-    
+    @validates('price')
+    def validates_description(self, key, price):
+        if not price or price < 1 or price > 30:
+            raise ValueError("Must be between 1 and 30")
+        return price
 class Restaurant(db.Model, SerializerMixin):
     __tablename__ = 'restaurants'
     serialize_rules = ("-restaurant_pizzas.pizza",)
