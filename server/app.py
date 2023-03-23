@@ -21,10 +21,11 @@ api = Api(app)
 def index():
     return '<h1>Code challenge</h1>'
 
-@app.route('/restaurants')
-def restaurants():
-
-    pass
+class Restaurants(Resource): 
+    def get(self): 
+        return "test"
+    
+api.add_resource(Restaurants, '/restaurants')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
