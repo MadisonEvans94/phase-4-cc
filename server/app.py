@@ -88,7 +88,7 @@ class RestaurantPizzas(Resource):
             new_restaurant_pizza_dict = new_restaurant_pizza.to_dict() 
             db.session.add(new_restaurant_pizza)
             db.session.commit()
-            return make_response(new_restaurant_pizza_dict, 200)
+            return make_response(new_restaurant_pizza_dict, 201)
         except ValueError as e: 
             return make_response(e, 404)
     
