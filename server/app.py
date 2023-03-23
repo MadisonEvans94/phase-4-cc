@@ -26,12 +26,20 @@ class Restaurants(Resource):
         restaurants = Restaurant.query.all()
         if(restaurants): 
             restaurants_dict = [restaurant.to_dict() for restaurant in restaurants]      
-            make_response(restaurants_dict, 200)
+            return make_response(restaurants_dict, 200)
         else: 
-            make_response("no restaurants found in db", 404)
+            return make_response("no restaurants found in db", 404)
             
+class RestaurantsById(Resource): 
+    def get(self,id): 
+        restaurant = Restaurant.query.filter_by(id=id).first()
+        if(restaurant):    
+            return make_response(restaurant.to_dict(), 200)
+        else: 
+            return make_response("This restaurant id doesn't exist", 404)
     
 api.add_resource(Restaurants, '/restaurants')
+api.add_resource(RestaurantsById, '/restaurants/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
