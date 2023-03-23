@@ -23,7 +23,13 @@ def index():
 
 class Restaurants(Resource): 
     def get(self): 
-        return "test"
+        restaurants = Restaurant.query.all()
+        if(restaurants): 
+            restaurants_dict = [restaurant.to_dict() for restaurant in restaurants]      
+            make_response(restaurants_dict, 200)
+        else: 
+            make_response("no restaurants found in db", 404)
+            
     
 api.add_resource(Restaurants, '/restaurants')
 
