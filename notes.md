@@ -28,7 +28,7 @@ example:
     hero_powers = db.relationship('HeroPower', backref = 'hero')
  -->
 <!-- [x] set serialize_rules that exclude the CURRENT instance of the class  -->
-<!-- 
+<!--
 
 class Hero(db.Model, SerializerMixin):
     # ...
@@ -58,10 +58,10 @@ serialize_rules = ('-powers.hero', '-hero_powers.hero')
 
 -->
 <!-- [ ] add validations -->
-<!-- 
+<!--
 
 class Power(db.Model, SerializerMixin):
-   ... 
+   ...
 
     @validates('description')
     def validates_description(self, key, description):
@@ -71,16 +71,19 @@ class Power(db.Model, SerializerMixin):
  -->
 <!-- TODO: app.py -->
 <!-- [ ] upgrade and migrate -->
-<!-- 
+<!--
 flask db upgrade (synonymous to makemgirations)
-flask db migrate (synonymous to migrate) 
+flask db migrate (synonymous to migrate)
  -->
 <!-- [ ] make necessary imports -->
+
 from flask import Flask, make_response, request, jsonify
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
 from models import db, <!-- also include any other models here -->
+
 <!-- [ ] make sure initial boiler plate code is in place -->
+
 app = Flask(**name**)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -96,7 +99,7 @@ if **name** == '**main**':
 app.run(port=5555, debug=True)
 
 <!-- [ ] GET (all) example -->
-<!-- 
+<!--
 class Hero(Resource):
     def get(self):
         heroes = Hero.query.all()
@@ -108,7 +111,7 @@ class Hero(Resource):
         return response
 -->
 <!-- [ ] PUT example -->
-<!-- 
+<!--
 
 class Heroes(Resource):
     def get(self):

@@ -88,16 +88,16 @@ Return JSON data in the format below:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Sottocasa NYC",
-    "address": "298 Atlantic Ave, Brooklyn, NY 11201"
-  },
-  {
-    "id": 2,
-    "name": "PizzArte",
-    "address": "69 W 55th St, New York, NY 10019"
-  }
+	{
+		"id": 1,
+		"name": "Sottocasa NYC",
+		"address": "298 Atlantic Ave, Brooklyn, NY 11201"
+	},
+	{
+		"id": 2,
+		"name": "PizzArte",
+		"address": "69 W 55th St, New York, NY 10019"
+	}
 ]
 ```
 
@@ -107,21 +107,21 @@ If the `Restaurant` exists, return JSON data in the format below:
 
 ```json
 {
-  "id": 1,
-  "name": "Sottocasa NYC",
-  "address": "298 Atlantic Ave, Brooklyn, NY 11201",
-  "pizzas": [
-    {
-      "id": 1,
-      "name": "Cheese",
-      "ingredients": "Dough, Tomato Sauce, Cheese"
-    },
-    {
-      "id": 2,
-      "name": "Pepperoni",
-      "ingredients": "Dough, Tomato Sauce, Cheese, Pepperoni"
-    }
-  ]
+	"id": 1,
+	"name": "Sottocasa NYC",
+	"address": "298 Atlantic Ave, Brooklyn, NY 11201",
+	"pizzas": [
+		{
+			"id": 1,
+			"name": "Cheese",
+			"ingredients": "Dough, Tomato Sauce, Cheese"
+		},
+		{
+			"id": 2,
+			"name": "Pepperoni",
+			"ingredients": "Dough, Tomato Sauce, Cheese, Pepperoni"
+		}
+	]
 }
 ```
 
@@ -130,7 +130,7 @@ the appropriate HTTP status code:
 
 ```json
 {
-  "error": "Restaurant not found"
+	"error": "Restaurant not found"
 }
 ```
 
@@ -149,7 +149,7 @@ the appropriate HTTP status code:
 
 ```json
 {
-  "error": "Restaurant not found"
+	"error": "Restaurant not found"
 }
 ```
 
@@ -159,16 +159,16 @@ Return JSON data in the format below:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Cheese",
-    "ingredients": "Dough, Tomato Sauce, Cheese"
-  },
-  {
-    "id": 2,
-    "name": "Pepperoni",
-    "ingredients": "Dough, Tomato Sauce, Cheese, Pepperoni"
-  }
+	{
+		"id": 1,
+		"name": "Cheese",
+		"ingredients": "Dough, Tomato Sauce, Cheese"
+	},
+	{
+		"id": 2,
+		"name": "Pepperoni",
+		"ingredients": "Dough, Tomato Sauce, Cheese, Pepperoni"
+	}
 ]
 ```
 
@@ -180,9 +180,9 @@ properties in the body of the request:
 
 ```json
 {
-  "price": 5,
-  "pizza_id": 1,
-  "restaurant_id": 3
+	"price": 5,
+	"pizza_id": 1,
+	"restaurant_id": 3
 }
 ```
 
@@ -191,9 +191,9 @@ related to the `Pizza`:
 
 ```json
 {
-  "id": 1,
-  "name": "Cheese",
-  "ingredients": "Dough, Tomato Sauce, Cheese"
+	"id": 1,
+	"name": "Cheese",
+	"ingredients": "Dough, Tomato Sauce, Cheese"
 }
 ```
 
@@ -202,6 +202,6 @@ JSON data, along with the appropriate HTTP status code:
 
 ```json
 {
-  "errors": ["validation errors"]
+	"errors": ["validation errors"]
 }
 ```

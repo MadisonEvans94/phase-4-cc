@@ -39,3 +39,4 @@ class Restaurant(db.Model, SerializerMixin):
     address = db.Column(db.String) 
     restaurant_pizzas = db.relationship("RestaurantPizza", backref = "restaurant")
     pizzas = association_proxy('restaurant_pizzas', 'pizza')
+    
