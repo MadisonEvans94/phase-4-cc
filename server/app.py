@@ -90,7 +90,7 @@ class RestaurantPizzas(Resource):
             db.session.commit()
             return make_response(new_restaurant_pizza_dict, 201)
         except ValueError as e: 
-            return make_response(e, 404)
+            return make_response("errors", ["validation errors"])
     
 # TODO: connect resources 
 api.add_resource(RestaurantPizzas, '/restaurant_pizzas')
