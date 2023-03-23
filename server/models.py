@@ -10,4 +10,25 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
-# Add models here
+class Pizza(db.Model, SerializerMixin): 
+    __tablename__ = "pizzas"
+    id = db.Column(db.Integer, primary_key=True) 
+    name = db.Column(db.String) 
+    ingredients = db.Column(db.String) 
+    created_at = db.Column(db.DateTime, server_default = db.func.now())
+    update_at = db.Column(db.DateTime, onupdate = db.func.now())
+    
+class RestaurantPizza(db.Model, SerializerMixin):
+    __tablename__ = "restaurant_pizzas" 
+    id = db.Column(db.Integer, primary_key=True) 
+    pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'))
+    restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
+    price = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, server_default = db.func.now())
+    update_at = db.Column(db.DateTime, onupdate = db.func.now())
+    
+class Restaurant(db.Model, SerializerMixin):
+    id = db.Column(db.Integer, primary_key=True) 
+    name = db.Column(db.String) 
+    address = db.Column(db.String) 
+    
